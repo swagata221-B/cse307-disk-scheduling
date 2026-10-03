@@ -1,0 +1,37 @@
+|--- ahead_frac <= 0.97
+|   |--- monotonic <= 0.84
+|   |   |--- zones_used <= 0.65
+|   |   |   |--- mean_jump <= 0.42
+|   |   |   |   |--- class: SSTF
+|   |   |   |--- mean_jump >  0.42
+|   |   |   |   |--- class: SSTF
+|   |   |--- zones_used >  0.65
+|   |   |   |--- ahead_frac <= 0.47
+|   |   |   |   |--- class: SSTF
+|   |   |   |--- ahead_frac >  0.47
+|   |   |   |   |--- class: SSTF
+|   |--- monotonic >  0.84
+|   |   |--- first_gap <= 0.15
+|   |   |   |--- first_gap <= 0.13
+|   |   |   |   |--- class: FCFS
+|   |   |   |--- first_gap >  0.13
+|   |   |   |   |--- class: FCFS
+|   |   |--- first_gap >  0.15
+|   |   |   |--- first_gap <= 0.65
+|   |   |   |   |--- class: FCFS
+|   |   |   |--- first_gap >  0.65
+|   |   |   |   |--- class: SSTF
+|--- ahead_frac >  0.97
+|   |--- monotonic <= 0.82
+|   |   |--- class: SCAN
+|   |--- monotonic >  0.82
+|   |   |--- first_gap <= 0.29
+|   |   |   |--- first_gap <= 0.25
+|   |   |   |   |--- class: FCFS
+|   |   |   |--- first_gap >  0.25
+|   |   |   |   |--- class: FCFS
+|   |   |--- first_gap >  0.29
+|   |   |   |--- first_gap <= 0.68
+|   |   |   |   |--- class: SCAN
+|   |   |   |--- first_gap >  0.68
+|   |   |   |   |--- class: SCAN

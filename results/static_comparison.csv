@@ -1,0 +1,4 @@
+workload,FCFS,SSTF,SCAN,C-SCAN,Selector,Oracle
+sequential,122.6,102.0,169.6,272.4,109.8,100.4
+random,1346.1,258.1,280.8,378.1,258.1,245.4
+bursty,783.2,129.7,194.9,288.2,129.7,129.6

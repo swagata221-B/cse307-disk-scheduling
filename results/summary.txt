@@ -1,0 +1,67 @@
+Label counts (train): {'SSTF': 628, 'SCAN': 329, 'FCFS': 243}
+
+Feature importance (Selector-A):
+ahead_frac    0.435
+monotonic     0.350
+first_gap     0.160
+zones_used    0.055
+mean_jump     0.000
+spread        0.000
+
+Mean movement per test window:
+  workload   FCFS  SSTF  SCAN  C-SCAN  Selector  Oracle
+sequential  122.6 102.0 169.6   272.4     109.8   100.4
+    random 1346.1 258.1 280.8   378.1     258.1   245.4
+    bursty  783.2 129.7 194.9   288.2     129.7   129.6
+
+Selector-A test accuracy (picked a lowest-movement scheduler): 0.852
+
+  'always FCFS' would be best in 0.192 of windows
+
+  'always SSTF' would be best in 0.897 of windows
+
+  'always SCAN' would be best in 0.328 of windows
+
+  'always C-SCAN' would be best in 0.232 of windows
+
+Calibration bins:
+       bin  windows  mean_confidence  accuracy
+[0.5, 0.6)      173            0.550     0.532
+[0.6, 0.7)        1            0.667     1.000
+[0.7, 0.8)       37            0.720     1.000
+[0.8, 0.9)      101            0.852     0.931
+[0.9, 1.0)      288            0.993     0.997
+
+Expected calibration error = 0.038; mean confidence when correct = 0.867, when wrong = 0.577
+
+When wrong, the selector moved 49.9 extra cylinders on average (39.2% above the best)
+
+Shift trace, total movement per phase (30 windows each):
+workload    sequential  random  bursty  total  seek_time_us  x_random_vs_sequential  x_bursty_vs_sequential
+policy                                                                                                     
+Oracle            2639    5866    4032  12537        25.074                    2.22                    1.53
+SSTF              2747    6198    4032  12977        25.954                    2.26                    1.47
+Selector-A        3313    6198    4032  13543        27.086                    1.87                    1.22
+Selector-B        3313    6198    5727  15238        30.476                    1.87                    1.73
+SCAN              4813    6032    5310  16155        32.310                    1.25                    1.10
+C-SCAN            9567   11222    9065  29854        59.708                    1.17                    0.95
+FCFS              3313   40457   24587  68357       136.714                   12.21                    7.42
+
+Selector accuracy / confidence per phase:
+                       accuracy  mean_confidence
+selector   workload                             
+Selector-A bursty           1.0            0.990
+           random           0.8            0.586
+           sequential       0.7            0.680
+Selector-B bursty           0.7            0.766
+           random           0.8            0.714
+           sequential       0.7            0.685
+
+Bonus: explanation confidence word vs. correctness:
+                            windows  accuracy
+selector   confidence_word                   
+Selector-A high                  42     1.000
+           low                   48     0.688
+Selector-B high                  41     0.951
+           low                   41     0.537
+           medium                 8     0.625
